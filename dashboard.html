@@ -3,14 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Legal Light House</title>
+    <title>Dashboard - Legal Light House</title>
     <link rel="stylesheet" href="./css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <script src="./js/resource-loader.js" defer></script>
     <script src="./js/main.js" defer></script>
+    <style>
+        .sidebar-item a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        a.sidebar-item {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -22,7 +34,6 @@
             <div class="logo">
                 <img src="./images/gavel_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="" width="30px" height="30px">
                 <span>Legal House</span>
-            
             </div>
         </div>
         
@@ -43,7 +54,6 @@
         <div class="header-right">
             <div class="header-icon">
                 <i class="ri-video-add-line"></i>
-            
             </div>
             <div class="header-icon">
                 <i class="ri-notification-line"></i>
@@ -57,13 +67,13 @@
         <!-- Sidebar -->
         <div class="sidebar">
             <div class="sidebar-section">
-                <div class="sidebar-item active">
+                <div class="sidebar-item">
                     <a href="index.html">
                         <i class="ri-home-fill"></i>
                         <span>Home</span>
                     </a>
                 </div>
-                <div class="sidebar-item">
+                <div class="sidebar-item active">
                     <a href="dashboard.html">
                         <i class="ri-building-2-line"></i>
                         <span>Dashboard</span>
@@ -94,22 +104,22 @@
                     </a>
                 </div>
             </div>
-             <div class="sidebar-section">
+            <div class="sidebar-section">
                 <div class="sidebar-heading">Learning Modules</div>
                 <div class="sidebar-item">
-                    <a href="modules.html">
+                    <a href="learning.html">
                         <i class="ri-book-shelf-fill"></i>
                         <span>Law Classes</span>
                     </a>
                 </div>
                 <div class="sidebar-item">
-                    <a href="quizzes.html">
+                    <a href="quiz.html">
                         <i class="ri-question-mark"></i>
                         <span>Quizzes</span>
                     </a>
                 </div>
             </div>
-             <div class="sidebar-section">
+            <div class="sidebar-section">
                 <div class="sidebar-heading">Connect With AI</div>
                 <div class="sidebar-item">
                     <a href="ai.html">
@@ -117,9 +127,7 @@
                         <span>Ask Sundeh AI ?</span>
                     </a>
                 </div>
-                
             </div>
-          
             
             <div class="sidebar-section">
                 <div class="sidebar-heading">Settings</div>
@@ -135,31 +143,78 @@
                         <span>Log Out</span>
                     </a>
                 </div>
-                
             </div>
         </div>
         
         <!-- Main Content -->
         <div class="content">
-            <!-- Categories -->
-            <div class="categories">
-                <div class="category active">All</div>
-                <div class="category">Child Laws</div>
-                <div class="category">Women Laws</div>
-                <div class="category">Property Laws</div>
-                <div class="category">Civil Laws </div>
-                <div class="category">Criminal Laws</div>
-                <div class="category">Labour Laws</div>
-                
+            <h2 class="page-title">Your Progress Dashboard</h2>
+            
+            <!-- User Stats Summary -->
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="ri-award-line"></i></div>
+                    <div class="stat-details">
+                        <div class="stat-value">120</div>
+                        <div class="stat-label">Points Earned</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="ri-medal-line"></i></div>
+                    <div class="stat-details">
+                        <div class="stat-value">5</div>
+                        <div class="stat-label">Badges Unlocked</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="ri-book-read-line"></i></div>
+                    <div class="stat-details">
+                        <div class="stat-value">8</div>
+                        <div class="stat-label">Modules Completed</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="ri-question-answer-line"></i></div>
+                    <div class="stat-details">
+                        <div class="stat-value">12</div>
+                        <div class="stat-label">Quizzes Taken</div>
+                    </div>
+                </div>
             </div>
             
-            <!-- Videos Grid -->
+            <!-- Recent Activity -->
+            <div class="section-heading">Recent Activity</div>
+            <div class="activity-list">
+                <div class="activity-item">
+                    <div class="activity-icon"><i class="ri-video-line"></i></div>
+                    <div class="activity-details">
+                        <div class="activity-title">Watched "What are child laws"</div>
+                        <div class="activity-time">2 hours ago • +10 points</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon"><i class="ri-file-text-line"></i></div>
+                    <div class="activity-details">
+                        <div class="activity-title">Read blog "House conflicts?"</div>
+                        <div class="activity-time">Yesterday • +10 points</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon"><i class="ri-question-mark"></i></div>
+                    <div class="activity-details">
+                        <div class="activity-title">Completed quiz on Property Laws</div>
+                        <div class="activity-time">2 days ago • +2 points</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recommended Content -->
+            <div class="section-heading">Recommended For You</div>
             <div class="videos-grid">
-                <!-- Video 1 -->
                 <div class="video-card">
                     <div class="thumbnail">
-                        <img src="./images/Field Walk Illustration.jpeg" alt="JavaScript Developers Video">
-                        <div class="video-duration">5:15</div>
+                        <img src="./images/Field Walk Illustration.jpeg" alt="Child Laws">
+                        <div class="video-duration">Module</div>
                         <div class="video-category">Child Laws</div>
                     </div>
                     <div class="video-info">
@@ -167,72 +222,30 @@
                             <img src="./images/Field Walk Illustration.jpeg" alt="">
                         </div>
                         <div class="video-details">
-                            <div class="video-title">What are child laws </div>
-                            <div class="channel-name">Vinay Sriramoju - student </div>
-
+                            <div class="video-title">Child Protection Laws in India</div>
+                            <div class="channel-name">Module • 5 lessons</div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Video 2 -->
                 <div class="video-card">
                     <div class="thumbnail">
-                        <img src="/images/Women in Front of Teal Door.jpeg" alt="Pakistan Video">
-                        <div class="video-duration">21:37</div>
+                        <img src="./images/Women in Front of Teal Door.jpeg" alt="Women Laws">
+                        <div class="video-duration">15:45</div>
                         <div class="video-category">Women Laws</div>
                     </div>
                     <div class="video-info">
                         <div class="channel-icon">
-                            <img src="/images/Women in Front of Teal Door.jpeg" alt="">
+                            <img src="./images/Women in Front of Teal Door.jpeg" alt="">
                         </div>
                         <div class="video-details">
-                            <div class="video-title">what are women laws ? are the womens safe in India ?</div>
-                            <div class="channel-name">Chitti - lawyer</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Video 3 -->
-                <div class="video-card">
-                    <div class="thumbnail">
-                        <img src="./images/Focused Data Analyst (1).jpeg" alt="Google Preparation">
-                        <div class="video-duration">Blog</div>
-                        <div class="video-category">Labour Laws</div>
-                        
-                    </div>
-                    <div class="video-info">
-                        <div class="channel-icon">
-                            <img src="./images/Focused Data Analyst (1).jpeg" alt="">
-                        </div>
-                        <div class="video-details">
-                            <div class="video-title">how many hours , you should work according to labour laws ?</div>
-                            <div class="channel-name">Sruthi.Ponugoti - lawyer</div>
-                        </div>
-                    </div>
-                </div>
-                <!-- video 4 -->
-                <div class="video-card">
-                    <div class="thumbnail">
-                        <img src="./images/Vintage Turquoise Scene.jpeg" alt="Google Preparation">
-                        <div class="video-category">Property Laws</div>
-                        <div class="video-duration">Blog</div>
-                        
-                        
-                    </div>
-                    <div class="video-info">
-                        <div class="channel-icon">
-                            <img src="./images/Vintage Turquoise Scene.jpeg" alt="">
-                        </div>
-                        <div class="video-details">
-                            <div class="video-title">house conflicts ?</div>
-                            <div class="channel-name">Jaya Sriramoju - lawyer</div>
+                            <div class="video-title">Understanding Domestic Violence Act</div>
+                            <div class="channel-name">Priya Sharma - lawyer</div>
                         </div>
                     </div>
                 </div>
             </div>
-            
-           
         </div>
     </div>
 </body>
-</html>
+</html> 

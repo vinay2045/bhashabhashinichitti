@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard - Legal Light House</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="./js/main.js" defer></script>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-left">
+            <div class="menu-icon">
+                <i class="ri-menu-2-line"></i>
+            </div>
+            <div class="logo">
+                <img src="./images/gavel_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="" width="30px" height="30px">
+                <span>Legal House</span>
+            </div>
+        </div>
+        
+        <div class="header-center">
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" placeholder="Search">
+                </div>
+                <div class="search-btn">
+                    <i class="ri-search-line"></i>
+                </div>
+            </div>
+            <div class="voice-search-btn">
+                <i class="ri-mic-line"></i>
+            </div>
+        </div>
+        
+        <div class="header-right">
+            <div class="header-icon">
+                <i class="ri-video-add-line"></i>
+            </div>
+            <div class="header-icon">
+                <i class="ri-notification-line"></i>
+            </div>
+            <div class="profile-icon">P</div>
+        </div>
+    </div>
+    
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-item">
+                    <a href="index.html">
+                        <i class="ri-home-fill"></i>
+                        <span>Home</span>
+                    </a>
+                </div>
+                <div class="sidebar-item">
+                    <a href="dashboard.html">
+                        <i class="ri-building-2-line"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+                <div class="sidebar-item">
+                    <a href="search.html">
+                        <i class="ri-baidu-line"></i>
+                        <span>Search laws</span>
+                    </a>
+                </div>
+                <div class="sidebar-item">
+                    <a href="cases.html">
+                        <i class="ri-time-line"></i>
+                        <span>Cases History</span>
+                    </a>
+                </div>
+                <div class="sidebar-item active">
+                    <a href="leaderboard.html">
+                        <i class="ri-bar-chart-line"></i>
+                        <span>Leader Board</span>
+                    </a>
+                </div>
+                <div class="sidebar-item">
+                    <a href="community.html">
+                        <i class="ri-user-community-line"></i>
+                        <span>Community</span>
+                    </a>
+                </div>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-heading">Learning Modules</div>
+                <div class="sidebar-item">
+                    <a href="learning.html">
+                        <i class="ri-book-shelf-fill"></i>
+                        <span>Law Classes</span>
+                    </a>
+                </div>
+                <div class="sidebar-item">
+                    <a href="quiz.html">
+                        <i class="ri-question-mark"></i>
+                        <span>Quizzes</span>
+                    </a>
+                </div>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-heading">Connect With AI</div>
+                <div class="sidebar-item">
+                    <a href="ai.html">
+                        <i class="ri-robot-3-line"></i>
+                        <span>Ask Sundeh AI ?</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="sidebar-section">
+                <div class="sidebar-heading">Settings</div>
+                <div class="sidebar-item">
+                    <a href="settings.html">
+                        <i class="ri-settings-3-line"></i>
+                        <span>Settings</span>
+                    </a>
+                </div>
+                <div class="sidebar-item">
+                    <a href="login.html">
+                        <i class="ri-logout-circle-line"></i>
+                        <span>Log Out</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="content">
+            <h2 class="page-title">Community Leaderboard</h2>
+            
+            <!-- Leaderboard Tabs -->
+            <div class="leaderboard-tabs">
+                <div class="tab active">All Time</div>
+                <div class="tab">This Month</div>
+                <div class="tab">This Week</div>
+            </div>
+            
+            <!-- User Rank Summary -->
+            <div class="user-rank-card">
+                <div class="user-rank-info">
+                    <div class="rank-position">#7</div>
+                    <div class="user-avatar">P</div>
+                    <div class="user-details">
+                        <div class="user-name">Your Ranking</div>
+                        <div class="user-badges">
+                            <i class="ri-medal-line gold"></i>
+                            <i class="ri-medal-line silver"></i>
+                            <i class="ri-medal-line bronze"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-points">
+                    <div class="points-value">240</div>
+                    <div class="points-label">Total Points</div>
+                </div>
+                <div class="user-stats">
+                    <div class="stat">
+                        <div class="stat-value">18</div>
+                        <div class="stat-label">Videos</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">12</div>
+                        <div class="stat-label">Quizzes</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">5</div>
+                        <div class="stat-label">Modules</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Top Performers -->
+            <div class="top-performers">
+                <div class="top-three">
+                    <!-- 2nd Place -->
+                    <div class="top-user second-place">
+                        <div class="position-icon">2</div>
+                        <div class="user-avatar">R</div>
+                        <div class="user-name">Rahul S.</div>
+                        <div class="user-role">Student</div>
+                        <div class="user-points">450 pts</div>
+                    </div>
+                    
+                    <!-- 1st Place -->
+                    <div class="top-user first-place">
+                        <div class="position-icon">1</div>
+                        <div class="user-avatar">A</div>
+                        <div class="user-name">Anjali P.</div>
+                        <div class="user-role">Lawyer</div>
+                        <div class="user-points">520 pts</div>
+                    </div>
+                    
+                    <!-- 3rd Place -->
+                    <div class="top-user third-place">
+                        <div class="position-icon">3</div>
+                        <div class="user-avatar">S</div>
+                        <div class="user-name">Sanjay M.</div>
+                        <div class="user-role">Student</div>
+                        <div class="user-points">410 pts</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Leaderboard Table -->
+            <div class="leaderboard-table">
+                <div class="table-header">
+                    <div class="header-rank">Rank</div>
+                    <div class="header-user">User</div>
+                    <div class="header-role">Role</div>
+                    <div class="header-points">Points</div>
+                    <div class="header-badges">Badges</div>
+                </div>
+                
+                <!-- Table Rows -->
+                <div class="table-body">
+                    <!-- Row 4 -->
+                    <div class="table-row">
+                        <div class="user-rank">4</div>
+                        <div class="user-info">
+                            <div class="user-avatar">V</div>
+                            <div class="user-name">Vijay K.</div>
+                        </div>
+                        <div class="user-role">Student</div>
+                        <div class="user-points">380</div>
+                        <div class="user-badges">
+                            <i class="ri-award-fill child-badge"></i>
+                            <i class="ri-award-fill women-badge"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Row 5 -->
+                    <div class="table-row">
+                        <div class="user-rank">5</div>
+                        <div class="user-info">
+                            <div class="user-avatar">M</div>
+                            <div class="user-name">Meera R.</div>
+                        </div>
+                        <div class="user-role">Legal Aid</div>
+                        <div class="user-points">350</div>
+                        <div class="user-badges">
+                            <i class="ri-award-fill property-badge"></i>
+                            <i class="ri-award-fill civil-badge"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Row 6 -->
+                    <div class="table-row">
+                        <div class="user-rank">6</div>
+                        <div class="user-info">
+                            <div class="user-avatar">K</div>
+                            <div class="user-name">Kiran T.</div>
+                        </div>
+                        <div class="user-role">NGO</div>
+                        <div class="user-points">320</div>
+                        <div class="user-badges">
+                            <i class="ri-award-fill child-badge"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Row 7 (Current User) -->
+                    <div class="table-row current-user">
+                        <div class="user-rank">7</div>
+                        <div class="user-info">
+                            <div class="user-avatar">P</div>
+                            <div class="user-name">Priya D.</div>
+                        </div>
+                        <div class="user-role">User</div>
+                        <div class="user-points">240</div>
+                        <div class="user-badges">
+                            <i class="ri-award-fill child-badge"></i>
+                            <i class="ri-award-fill labour-badge"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Row 8 -->
+                    <div class="table-row">
+                        <div class="user-rank">8</div>
+                        <div class="user-info">
+                            <div class="user-avatar">G</div>
+                            <div class="user-name">Ganesh L.</div>
+                        </div>
+                        <div class="user-role">Student</div>
+                        <div class="user-points">230</div>
+                        <div class="user-badges">
+                            <i class="ri-award-fill property-badge"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Row 9 -->
+                    <div class="table-row">
+                        <div class="user-rank">9</div>
+                        <div class="user-info">
+                            <div class="user-avatar">J</div>
+                            <div class="user-name">Jaya S.</div>
+                        </div>
+                        <div class="user-role">Lawyer</div>
+                        <div class="user-points">210</div>
+                        <div class="user-badges">
+                            <i class="ri-award-fill women-badge"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Row 10 -->
+                    <div class="table-row">
+                        <div class="user-rank">10</div>
+                        <div class="user-info">
+                            <div class="user-avatar">N</div>
+                            <div class="user-name">Neha P.</div>
+                        </div>
+                        <div class="user-role">User</div>
+                        <div class="user-points">180</div>
+                        <div class="user-badges">
+                            <i class="ri-award-fill child-badge"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

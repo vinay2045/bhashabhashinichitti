@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Legal Light House</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #181818;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .signup-container {
+            display: flex;
+            width: 900px;
+            height: 700px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .signup-sidebar {
+            width: 350px;
+            background-color: #8a3ab9;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        
+        .logo-container img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .sidebar-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .sidebar-heading {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .sidebar-text {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .features {
+            margin-top: 20px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .feature-item i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .language-selector {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            color: white;
+            font-size: 14px;
+        }
+        
+        .language-selector i {
+            margin-right: 8px;
+        }
+        
+        .language-selector select {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 14px;
+            padding: 5px;
+            cursor: pointer;
+            outline: none;
+        }
+        
+        .language-selector select option {
+            background-color: #8a3ab9;
+            color: white;
+        }
+        
+        .signup-content {
+            flex: 1;
+            background-color: #202020;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+        
+        .signup-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .signup-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #e3e3e3;
+            margin-bottom: 10px;
+        }
+        
+        .signup-subtitle {
+            font-size: 14px;
+            color: #aaa;
+        }
+        
+        .signup-roles {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .role-option {
+            flex: 1;
+            text-align: center;
+            background-color: #303030;
+            border-radius: 8px;
+            padding: 15px 10px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .role-option:hover {
+            background-color: #404040;
+        }
+        
+        .role-option.selected {
+            background-color: #8a3ab9;
+        }
+        
+        .role-icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .role-name {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .signup-form {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            flex: 1;
+        }
+        
+        .form-label {
+            display: block;
+            font-size: 14px;
+            color: #aaa;
+            margin-bottom: 8px;
+        }
+        
+        .form-input {
+            width: 100%;
+            height: 50px;
+            background-color: #303030;
+            border: none;
+            border-radius: 8px;
+            padding: 0 15px;
+            font-size: 16px;
+            color: #e3e3e3;
+            outline: none;
+        }
+        
+        .interest-selection {
+            margin-bottom: 20px;
+        }
+        
+        .interest-label {
+            font-size: 14px;
+            color: #aaa;
+            margin-bottom: 10px;
+        }
+        
+        .interest-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .interest-tag {
+            background-color: #303030;
+            color: #e3e3e3;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .interest-tag:hover {
+            background-color: #404040;
+        }
+        
+        .interest-tag.selected {
+            background-color: #8a3ab9;
+        }
+        
+        .terms-checkbox {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .terms-checkbox input {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            accent-color: #8a3ab9;
+        }
+        
+        .terms-text {
+            font-size: 14px;
+            color: #aaa;
+        }
+        
+        .terms-text a {
+            color: #8a3ab9;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .signup-btn {
+            height: 50px;
+            background-color: #8a3ab9;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        .divider hr {
+            flex: 1;
+            border: none;
+            border-top: 1px solid #303030;
+        }
+        
+        .divider span {
+            padding: 0 15px;
+        }
+        
+        .social-signup {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            background-color: #303030;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            color: #e3e3e3;
+            cursor: pointer;
+        }
+        
+        .login-link {
+            text-align: center;
+            font-size: 14px;
+            color: #aaa;
+        }
+        
+        .login-link a {
+            color: #8a3ab9;
+            text-decoration: none;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <div class="signup-sidebar">
+            <div>
+                <div class="logo-container">
+                    <img src="./images/gavel_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="Legal Light House">
+                    <div class="logo-text">Legal Light House</div>
+                </div>
+                
+                <div class="sidebar-content">
+                    <div class="sidebar-heading">Start Your Legal Learning Journey</div>
+                    <div class="sidebar-text">Join our community of learners and gain access to comprehensive legal education and resources in your preferred language.</div>
+                    
+                    <div class="features">
+                        <div class="feature-item">
+                            <i class="ri-translate-2"></i>
+                            <span>Content in 10+ Indian Languages</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="ri-book-open-line"></i>
+                            <span>Bite-sized Learning Modules</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="ri-award-line"></i>
+                            <span>Earn Points and Badges</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="ri-user-search-line"></i>
+                            <span>Connect with Legal Experts</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="language-selector">
+                <i class="ri-global-line"></i>
+                <select>
+                    <option value="en">English</option>
+                    <option value="hi">हिंदी</option>
+                    <option value="te">తెలుగు</option>
+                    <option value="ta">தமிழ்</option>
+                    <option value="ml">മലയാളം</option>
+                    <option value="kn">ಕನ್ನಡ</option>
+                    <option value="bn">বাংলা</option>
+                    <option value="mr">मराठी</option>
+                    <option value="gu">ગુજરાતી</option>
+                    <option value="pa">ਪੰਜਾਬੀ</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="signup-content">
+            <div class="signup-header">
+                <div class="signup-title">Create Your Account</div>
+                <div class="signup-subtitle">Join Legal Light House to start your legal learning journey</div>
+            </div>
+            
+            <div class="signup-roles">
+                <div class="role-option">
+                    <div class="role-icon"><i class="ri-user-3-line"></i></div>
+                    <div class="role-name">User</div>
+                </div>
+                <div class="role-option selected">
+                    <div class="role-icon"><i class="ri-graduation-cap-line"></i></div>
+                    <div class="role-name">Student</div>
+                </div>
+                <div class="role-option">
+                    <div class="role-icon"><i class="ri-scales-3-line"></i></div>
+                    <div class="role-name">Lawyer</div>
+                </div>
+                <div class="role-option">
+                    <div class="role-icon"><i class="ri-building-4-line"></i></div>
+                    <div class="role-name">Legal Aid</div>
+                </div>
+                <div class="role-option">
+                    <div class="role-icon"><i class="ri-team-line"></i></div>
+                    <div class="role-name">NGO</div>
+                </div>
+            </div>
+            
+            <div class="signup-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">First Name</label>
+                        <input type="text" class="form-input" placeholder="Enter your first name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Last Name</label>
+                        <input type="text" class="form-input" placeholder="Enter your last name">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-input" placeholder="Enter your email address">
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-input" placeholder="Create a password">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Confirm Password</label>
+                        <input type="password" class="form-input" placeholder="Confirm your password">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Mobile Number</label>
+                        <input type="tel" class="form-input" placeholder="Enter your mobile number">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Language Preference</label>
+                        <select class="form-input">
+                            <option value="en">English</option>
+                            <option value="hi">हिंदी</option>
+                            <option value="te">తెలుగు</option>
+                            <option value="ta">தமிழ்</option>
+                            <option value="ml">മലയാളം</option>
+                            <option value="kn">ಕನ್ನಡ</option>
+                            <option value="bn">বাংলা</option>
+                            <option value="mr">मराठी</option>
+                            <option value="gu">ગુજરાતી</option>
+                            <option value="pa">ਪੰਜਾਬੀ</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="interest-selection">
+                    <div class="interest-label">Select your areas of interest</div>
+                    <div class="interest-tags">
+                        <div class="interest-tag selected">Child Laws</div>
+                        <div class="interest-tag selected">Women Laws</div>
+                        <div class="interest-tag">Property Laws</div>
+                        <div class="interest-tag">Civil Laws</div>
+                        <div class="interest-tag">Criminal Laws</div>
+                        <div class="interest-tag">Labour Laws</div>
+                    </div>
+                </div>
+                
+                <div class="terms-checkbox">
+                    <input type="checkbox" id="terms">
+                    <label for="terms" class="terms-text">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+                </div>
+                
+                <button class="signup-btn">Create Account</button>
+                
+                <div class="divider">
+                    <hr>
+                    <span>Or sign up with</span>
+                    <hr>
+                </div>
+                
+                <div class="social-signup">
+                    <div class="social-btn">
+                        <i class="ri-google-fill"></i>
+                    </div>
+                    <div class="social-btn">
+                        <i class="ri-facebook-fill"></i>
+                    </div>
+                    <div class="social-btn">
+                        <i class="ri-phone-fill"></i>
+                    </div>
+                </div>
+                
+                <div class="login-link">
+                    Already have an account? <a href="login.html">Log In</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
