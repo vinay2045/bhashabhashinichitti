@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rich Blog Editor - Legal Lighthouse</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- TinyMCE Rich Text Editor -->
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    
+    <style>
+        .blog-container {
+            padding: 20px;
+            background-color: #1a1a1a;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .blog-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .form-group label {
+            font-weight: 500;
+            color: #e3e3e3;
+        }
+        
+        .form-group input, 
+        .form-group select {
+            padding: 12px;
+            border-radius: 4px;
+            border: 1px solid #333;
+            background-color: #2a2a2a;
+            color: #e3e3e3;
+        }
+        
+        .thumbnail-upload {
+            border: 2px dashed #555;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .thumbnail-upload:hover {
+            border-color: #3ea6ff;
+            background-color: rgba(62, 166, 255, 0.05);
+        }
+        
+        .thumbnail-preview {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: #aaa;
+        }
+        
+        .thumbnail-preview i {
+            font-size: 24px;
+        }
+        
+        .thumbnail-preview img {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 4px;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 16px;
+            margin-top: 20px;
+        }
+        
+        .cancel-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #333;
+            color: #e3e3e3;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #3ea6ff;
+            color: #0f0f0f;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .cancel-btn:hover {
+            background-color: #444;
+        }
+        
+        .submit-btn:hover {
+            background-color: #70bfff;
+        }
+        
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        
+        .tag {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 12px;
+            background-color: #3e3e3e;
+            border-radius: 16px;
+            color: #e3e3e3;
+        }
+        
+        .tag i {
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .tag i:hover {
+            color: #ff3e3e;
+        }
+        
+        small {
+            color: #aaa;
+            font-size: 12px;
+        }
+        
+        .language-selector {
+            background-color: #2a2a2a;
+            padding: 10px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .language-selector label {
+            color: #e3e3e3;
+            font-weight: 500;
+        }
+        
+        .language-options {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .language-option {
+            padding: 6px 12px;
+            border-radius: 20px;
+            background-color: #3e3e3e;
+            color: #e3e3e3;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .language-option.active {
+            background-color: #3ea6ff;
+            color: #0f0f0f;
+        }
+        
+        /* Override TinyMCE theme to match our dark theme */
+        .tox .tox-editor-container {
+            background-color: #2a2a2a !important;
+        }
+        
+        .tox .tox-edit-area__iframe {
+            background-color: #2a2a2a !important;
+        }
+        
+        .tox .tox-toolbar {
+            background-color: #333 !important;
+        }
+        
+        .tox .tox-tbtn {
+            color: #e3e3e3 !important;
+        }
+        
+        .tox .tox-tbtn:hover {
+            background-color: #444 !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-left">
+            <div class="menu-icon">
+                <i class="ri-menu-2-line"></i>
+            </div>
+            <div class="logo">
+                <img src="./images/gavel_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="" width="30px" height="30px">
+                <span>Legal Lighthouse</span>
+            </div>
+        </div>
+        
+        <div class="header-center">
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" placeholder="Search">
+                </div>
+                <div class="search-btn">
+                    <i class="ri-search-line"></i>
+                </div>
+            </div>
+            <div class="voice-search-btn">
+                <i class="ri-mic-line"></i>
+            </div>
+        </div>
+        
+        <div class="header-right">
+            <div class="header-icon create-btn">
+                <i class="ri-video-add-line"></i>
+                <!-- Create dropdown menu -->
+                <div class="create-dropdown">
+                    <div class="dropdown-item upload-video">
+                        <i class="ri-video-upload-line"></i>
+                        <span>Upload video</span>
+                    </div>
+                    <div class="dropdown-item create-post">
+                        <i class="ri-file-text-line"></i>
+                        <span>Create post</span>
+                    </div>
+                </div>
+            </div>
+            <div class="header-icon">
+                <i class="ri-notification-line"></i>
+            </div>
+            <div class="profile-icon">P</div>
+        </div>
+    </div>
+    
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-item">
+                    <a href="index.html">
+                        <i class="ri-home-fill"></i>
+                        <span>Home</span>
+                    </a>
+                </div>
+                <div class="sidebar-item">
+                    <a href="dashboard.html">
+                        <i class="ri-building-2-line"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+                <div class="sidebar-item">
+                    <a href="search.html">
+                        <i class="ri-baidu-line"></i>
+                        <span>Search laws</span>
+                    </a>
+                </div>
+                <div class="sidebar-item">
+                    <a href="cases.html">
+                        <i class="ri-time-line"></i>
+                        <span>Cases History</span>
+                    </a>
+                </div>
+                <div class="sidebar-item">
+                    <a href="leaderboard.html">
+                        <i class="ri-bar-chart-line"></i>
+                        <span>Leader Board</span>
+                    </a>
+                </div>
+                <div class="sidebar-item">
+                    <a href="community.html">
+                        <i class="ri-user-community-line"></i>
+                        <span>Community</span>
+                    </a>
+                </div>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-heading">Learning Modules</div>
+                <div class="sidebar-item">
+                    <a href="modules.html">
+                        <i class="ri-book-shelf-fill"></i>
+                        <span>Law Classes</span>
+                    </a>
+                </div>
+                <div class="sidebar-item">
+                    <a href="quizzes.html">
+                        <i class="ri-question-mark"></i>
+                        <span>Quizzes</span>
+                    </a>
+                </div>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-heading">Connect With AI</div>
+                <div class="sidebar-item">
+                    <a href="ai.html">
+                        <i class="ri-robot-3-line"></i>
+                        <span>Ask Sundeh AI ?</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="sidebar-section">
+                <div class="sidebar-heading">Settings</div>
+                <div class="sidebar-item">
+                    <a href="settings.html">
+                        <i class="ri-settings-3-line"></i>
+                        <span>Settings</span>
+                    </a>
+                </div>
+                <div class="sidebar-item">
+                    <a href="login.html">
+                        <i class="ri-logout-circle-line"></i>
+                        <span>Log Out</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="content">
+            <h2 class="page-title">Create New Legal Blog</h2>
+            
+            <div class="language-selector">
+                <label>Content Language:</label>
+                <div class="language-options">
+                    <div class="language-option active">English</div>
+                    <div class="language-option">हिन्दी (Hindi)</div>
+                    <div class="language-option">தமிழ் (Tamil)</div>
+                    <div class="language-option">తెలుగు (Telugu)</div>
+                    <div class="language-option">ಕನ್ನಡ (Kannada)</div>
+                    <div class="language-option">বাংলা (Bengali)</div>
+                    <div class="language-option">ગુજરાતી (Gujarati)</div>
+                </div>
+            </div>
+            
+            <div class="blog-container">
+                <div class="blog-section">
+                    <form class="blog-form">
+                        <div class="form-group">
+                            <label for="blog-title">Blog Title</label>
+                            <input type="text" id="blog-title" placeholder="Enter a clear, descriptive title for your legal blog" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="blog-summary">Brief Summary</label>
+                            <input type="text" id="blog-summary" placeholder="Write a short summary (1-2 sentences)" required>
+                            <small>This will appear in search results and blog listings</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="blog-category">Legal Category</label>
+                            <select id="blog-category" required>
+                                <option value="">Select a legal category</option>
+                                <option value="child-laws">Child Laws</option>
+                                <option value="women-laws">Women Laws</option>
+                                <option value="property-laws">Property Laws</option>
+                                <option value="civil-laws">Civil Laws</option>
+                                <option value="criminal-laws">Criminal Laws</option>
+                                <option value="labour-laws">Labour Laws</option>
+                                <option value="constitutional">Constitutional Law</option>
+                                <option value="cyber-law">Cyber Law</option>
+                                <option value="consumer-rights">Consumer Rights</option>
+                                <option value="family-law">Family Law</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Featured Image</label>
+                            <div class="thumbnail-upload">
+                                <div class="thumbnail-preview">
+                                    <i class="ri-image-add-line"></i>
+                                    <span>Upload featured image (16:9 ratio recommended)</span>
+                                </div>
+                                <input type="file" id="thumbnail-file" accept="image/*" hidden>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Blog Content</label>
+                            <textarea id="blog-content"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="blog-tags">Tags</label>
+                            <input type="text" id="blog-tags" placeholder="Type a tag and press Enter">
+                            <small>Add relevant legal tags to help readers find your content</small>
+                            <div class="tags-container" id="tags-container">
+                                <!-- Tags will be added here dynamically -->
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Readability Level</label>
+                            <select id="readability-level">
+                                <option value="simple">Simple (Easy to understand for everyone)</option>
+                                <option value="intermediate" selected>Intermediate (For general public)</option>
+                                <option value="advanced">Advanced (For legal professionals)</option>
+                            </select>
+                            <small>Helps recommend your content to the right audience</small>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="cancel-btn">Cancel</button>
+                            <button type="button" class="submit-btn" id="save-draft-btn">Save as Draft</button>
+                            <button type="submit" class="submit-btn">Publish Blog</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize TinyMCE
+            tinymce.init({
+                selector: '#blog-content',
+                height: 500,
+                menubar: true,
+                plugins: [
+                    'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                    'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                    'insertdatetime', 'media', 'table', 'help', 'wordcount'
+                ],
+                toolbar: 'undo redo | formatselect | ' +
+                'bold italic backcolor | alignleft aligncenter ' +
+                'alignright alignjustify | bullist numlist outdent indent | ' +
+                'removeformat | image link | help',
+                content_style: 'body { font-family: Roboto, sans-serif; font-size: 16px; color: #e3e3e3; background-color: #2a2a2a; }',
+                skin: 'oxide-dark',
+                content_css: 'dark',
+                placeholder: 'Write your detailed legal blog post here...',
+                // File upload handling would go here in a real implementation
+            });
+            
+            // Thumbnail upload preview
+            const thumbnailUpload = document.querySelector('.thumbnail-upload');
+            const thumbnailFile = document.getElementById('thumbnail-file');
+            const thumbnailPreview = document.querySelector('.thumbnail-preview');
+            
+            thumbnailUpload.addEventListener('click', function() {
+                thumbnailFile.click();
+            });
+            
+            thumbnailFile.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        thumbnailPreview.innerHTML = `<img src="${e.target.result}" alt="Thumbnail preview">`;
+                    }
+                    
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+            
+            // Tags handling
+            const tagsInput = document.getElementById('blog-tags');
+            const tagsContainer = document.getElementById('tags-container');
+            let tags = [];
+            
+            tagsInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ',') {
+                    e.preventDefault();
+                    
+                    const tag = this.value.trim();
+                    if (tag && !tags.includes(tag)) {
+                        tags.push(tag);
+                        renderTags();
+                        this.value = '';
+                    }
+                }
+            });
+            
+            function renderTags() {
+                tagsContainer.innerHTML = '';
+                tags.forEach((tag, index) => {
+                    const tagElement = document.createElement('div');
+                    tagElement.className = 'tag';
+                    tagElement.innerHTML = `
+                        ${tag}
+                        <i class="ri-close-line" data-index="${index}"></i>
+                    `;
+                    tagsContainer.appendChild(tagElement);
+                });
+                
+                // Add event listeners to remove tags
+                document.querySelectorAll('.tag i').forEach(icon => {
+                    icon.addEventListener('click', function() {
+                        const index = parseInt(this.getAttribute('data-index'));
+                        tags.splice(index, 1);
+                        renderTags();
+                    });
+                });
+            }
+            
+            // Language selector functionality
+            const languageOptions = document.querySelectorAll('.language-option');
+            
+            languageOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    languageOptions.forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Here you'd typically make an API call to a translation service
+                    // or update the UI to reflect the language change
+                });
+            });
+            
+            // Form submission
+            const blogForm = document.querySelector('.blog-form');
+            const saveDraftBtn = document.getElementById('save-draft-btn');
+            
+            blogForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get content from TinyMCE editor
+                const content = tinymce.get('blog-content').getContent();
+                
+                // Here you would submit the form data to your backend
+                console.log({
+                    title: document.getElementById('blog-title').value,
+                    summary: document.getElementById('blog-summary').value,
+                    category: document.getElementById('blog-category').value,
+                    content: content,
+                    tags: tags,
+                    readabilityLevel: document.getElementById('readability-level').value,
+                    language: document.querySelector('.language-option.active').textContent
+                });
+                
+                // For demo purposes
+                alert('Blog post published successfully!');
+                window.location.href = 'index.html';
+            });
+            
+            saveDraftBtn.addEventListener('click', function() {
+                const content = tinymce.get('blog-content').getContent();
+                
+                // Here you would save the draft to your backend
+                console.log({
+                    title: document.getElementById('blog-title').value || 'Untitled Draft',
+                    summary: document.getElementById('blog-summary').value,
+                    category: document.getElementById('blog-category').value,
+                    content: content,
+                    tags: tags,
+                    readabilityLevel: document.getElementById('readability-level').value,
+                    language: document.querySelector('.language-option.active').textContent,
+                    isDraft: true
+                });
+                
+                alert('Draft saved successfully!');
+            });
+            
+            // Cancel button handler
+            const cancelBtn = document.querySelector('.cancel-btn');
+            cancelBtn.addEventListener('click', function() {
+                if (confirm('Are you sure you want to discard this blog post?')) {
+                    window.location.href = 'index.html';
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

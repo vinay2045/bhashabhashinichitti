@@ -3,7 +3,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    background-color: #202020;
+    background-color: var(--yt-dark-secondary);
     border-radius: 10px;
     padding: 10px;
 }
@@ -18,12 +18,12 @@
 }
 
 .community-tab:hover {
-    background-color: #303030;
+    background-color: var(--yt-dark-tertiary);
 }
 
 .community-tab.active {
-    background-color: #8a3ab9;
-    color: white;
+    background-color: var(--yt-purple);
+    color: var(--yt-text-primary);
 }
 
 .tab-actions {
@@ -31,17 +31,22 @@
 }
 
 .create-post-btn {
-    background-color: #8a3ab9;
-    color: white;
+    background-color: var(--yt-blue);
+    color: var(--yt-text-primary);
     border: none;
     padding: 10px 15px;
-    border-radius: 6px;
+    border-radius: 18px;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 5px;
+    transition: opacity 0.2s;
+}
+
+.create-post-btn:hover {
+    opacity: 0.9;
 }
 
 .community-posts {
@@ -52,7 +57,7 @@
 }
 
 .community-post {
-    background-color: #202020;
+    background-color: var(--yt-dark-secondary);
     border-radius: 10px;
     display: flex;
     overflow: hidden;
@@ -60,7 +65,7 @@
 
 .post-votes {
     width: 60px;
-    background-color: #181818;
+    background-color: var(--yt-dark-background);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -80,15 +85,15 @@
 }
 
 .vote-btn:hover {
-    background-color: #303030;
+    background-color: var(--yt-dark-tertiary);
 }
 
 .up-vote:hover {
-    color: #4caf50;
+    color: var(--yt-green);
 }
 
 .down-vote:hover {
-    color: #f44336;
+    color: var(--yt-red);
 }
 
 .vote-count {
@@ -117,8 +122,8 @@
 }
 
 .post-category {
-    background-color: #303030;
-    color: #e3e3e3;
+    background-color: var(--yt-dark-tertiary);
+    color: var(--yt-text-secondary);
     padding: 5px 10px;
     border-radius: 4px;
     font-size: 12px;
@@ -126,17 +131,19 @@
 }
 
 .post-category.lawyer-post {
-    background-color: #8a3ab9;
+    background-color: var(--yt-purple);
+    color: var(--yt-text-primary);
 }
 
 .post-category.ngo-post {
-    background-color: #4caf50;
+    background-color: var(--yt-green);
+    color: var(--yt-text-primary);
 }
 
 .post-text {
     font-size: 14px;
     line-height: 1.5;
-    color: #aaa;
+    color: var(--yt-text-secondary);
     margin-bottom: 20px;
 }
 
@@ -152,8 +159,8 @@
 }
 
 .post-tag {
-    background-color: #303030;
-    color: #e3e3e3;
+    background-color: var(--yt-dark-tertiary);
+    color: var(--yt-text-secondary);
     padding: 5px 10px;
     border-radius: 4px;
     font-size: 12px;
@@ -169,22 +176,22 @@
     align-items: center;
     gap: 5px;
     font-size: 12px;
-    color: #aaa;
+    color: var(--yt-text-secondary);
 }
 
 .post-author {
     display: flex;
     align-items: center;
     padding-top: 15px;
-    border-top: 1px solid #303030;
+    border-top: 1px solid var(--yt-dark-border);
 }
 
 .author-avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #8a3ab9;
-    color: white;
+    background-color: var(--yt-purple);
+    color: var(--yt-text-primary);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -204,30 +211,28 @@
 
 .author-role {
     font-size: 12px;
-    color: #aaa;
+    color: var(--yt-text-secondary);
 }
 
 .verified-badge, .expert-badge {
-    display: flex;
-    align-items: center;
     font-size: 14px;
-    color: #4caf50;
+    color: var(--yt-blue);
+    margin-left: 5px;
 }
 
 .expert-badge {
-    color: #ffd700;
-    gap: 5px;
+    color: var(--yt-purple);
 }
 
 .professionals-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 20px;
     margin-bottom: 30px;
 }
 
 .professional-card {
-    background-color: #202020;
+    background-color: var(--yt-dark-secondary);
     border-radius: 10px;
     padding: 20px;
     display: flex;
@@ -240,12 +245,12 @@
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background-color: #8a3ab9;
-    color: white;
+    background-color: var(--yt-purple);
+    color: var(--yt-text-primary);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 30px;
+    font-size: 32px;
     font-weight: 500;
     margin-bottom: 15px;
 }
@@ -258,8 +263,8 @@
 
 .professional-speciality {
     font-size: 14px;
-    color: #aaa;
-    margin-bottom: 10px;
+    color: var(--yt-text-secondary);
+    margin-bottom: 15px;
 }
 
 .professional-stats {
@@ -271,25 +276,28 @@
 
 .professional-stat {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 5px;
-    font-size: 14px;
 }
 
 .professional-stat i {
-    color: #ffd700;
+    color: var(--yt-text-secondary);
 }
 
 .connect-btn {
-    background-color: #8a3ab9;
-    color: white;
+    background-color: var(--yt-blue);
+    color: var(--yt-text-primary);
     border: none;
-    padding: 8px 20px;
-    border-radius: 6px;
+    padding: 8px 15px;
+    border-radius: 18px;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    width: 100%;
+    transition: opacity 0.2s;
+}
+
+.connect-btn:hover {
+    opacity: 0.9;
 }
 
 .events-container {

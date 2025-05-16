@@ -27,6 +27,12 @@ document.addEventListener('DOMContentLoaded', function() {
         // Handle menu icon clicks for mobile
         setupMobileMenu();
         
+        // Set up create button dropdown
+        setupCreateDropdown();
+        
+        // Check initial screen size and set appropriate sidebar state
+        checkScreenSize();
+        
         // Load initial page content based on current URL
         const initialPath = window.location.pathname;
         const defaultPage = '/index.html';
@@ -440,6 +446,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const menuIcon = document.querySelector('.menu-icon');
         const sidebar = document.querySelector('.sidebar');
         
+        // Create overlay for mobile
+        let overlay = document.querySelector('.sidebar-overlay');
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.className = 'sidebar-overlay';
+            document.body.appendChild(overlay);
+        }
+        
         if (menuIcon && sidebar) {
             // Remove any existing listeners
             const newMenuIcon = menuIcon.cloneNode(true);
@@ -450,22 +464,42 @@ document.addEventListener('DOMContentLoaded', function() {
             // Add new click listener
             newMenuIcon.addEventListener('click', function(e) {
                 e.stopPropagation(); // Prevent event from bubbling up
-                sidebar.classList.toggle('open');
                 
-                // Close menu when clicking outside
-                document.addEventListener('click', function closeSidebar(e) {
-                    if (!sidebar.contains(e.target) && e.target !== newMenuIcon) {
-                        sidebar.classList.remove('open');
-                        document.removeEventListener('click', closeSidebar);
-                    }
-                });
+                if (window.innerWidth <= 768) {
+                    // Mobile behavior - open/close sidebar
+                    sidebar.classList.toggle('open');
+                    overlay.classList.toggle('active');
+                } else {
+                    // Desktop behavior - collapse/expand sidebar
+                    sidebar.classList.toggle('collapsed');
+                    document.body.classList.toggle('sidebar-collapsed');
+                    
+                    // Save preference to localStorage
+                    localStorage.setItem('sidebarCollapsed', sidebar.classList.contains('collapsed'));
+                }
+            });
+            
+            // Close menu when clicking on overlay
+            overlay.addEventListener('click', function() {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('active');
             });
         }
         
         // Handle window resize for responsive behavior
         window.addEventListener('resize', function() {
-            if (window.innerWidth > 768 && sidebar) {
+            if (window.innerWidth > 768) {
+                // Remove mobile specific classes
                 sidebar.classList.remove('open');
+                overlay.classList.remove('active');
+                
+                // Restore collapsed state from localStorage
+                const isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
+                sidebar.classList.toggle('collapsed', isCollapsed);
+                document.body.classList.toggle('sidebar-collapsed', isCollapsed);
+            } else {
+                // Switch to mobile view
+                sidebar.classList.remove('collapsed');
             }
         });
     }
@@ -512,5 +546,59 @@ document.addEventListener('DOMContentLoaded', function() {
         const currentPath = window.location.pathname;
         const filename = currentPath.split('/').pop() || 'index.html';
         updateActiveNavItem(filename);
+    }
+    
+    // Check screen size and adjust sidebar accordingly
+    function checkScreenSize() {
+        const sidebar = document.querySelector('.sidebar');
+        
+        if (!sidebar) return;
+        
+        if (window.innerWidth <= 768) {
+            // Mobile view
+            sidebar.classList.remove('collapsed');
+        } else {
+            // Desktop view - check for saved preference
+            const isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
+            sidebar.classList.toggle('collapsed', isCollapsed);
+            document.body.classList.toggle('sidebar-collapsed', isCollapsed);
+        }
+    }
+    
+    // Set up create dropdown functionality
+    function setupCreateDropdown() {
+        const createBtn = document.querySelector('.create-btn');
+        const uploadVideoBtn = document.querySelector('.dropdown-item.upload-video');
+        const createPostBtn = document.querySelector('.dropdown-item.create-post');
+        
+        if (createBtn) {
+            // Toggle dropdown on click
+            createBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                createBtn.classList.toggle('active');
+                
+                // Close dropdown when clicking elsewhere
+                document.addEventListener('click', function closeDropdown(e) {
+                    if (!createBtn.contains(e.target)) {
+                        createBtn.classList.remove('active');
+                        document.removeEventListener('click', closeDropdown);
+                    }
+                });
+            });
+        }
+        
+        // Handle upload video button click
+        if (uploadVideoBtn) {
+            uploadVideoBtn.addEventListener('click', function() {
+                window.location.href = 'postvideo.html';
+            });
+        }
+        
+        // Handle create post button click
+        if (createPostBtn) {
+            createPostBtn.addEventListener('click', function() {
+                window.location.href = 'blogpost.html';
+            });
+        }
     }
 }); 
